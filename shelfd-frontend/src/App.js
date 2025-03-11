@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/HomePageComponents/Navbar/Navbar';
-import Hero from './components/HomePageComponents/Hero/Hero';
-import Features from './components/HomePageComponents/Features/Features';
-import Trending from './components/HomePageComponents/Trending/Trending';
 import HomePage from './Pages/HomePage/HomePage';
-import './App.scss';
+import BookDetails from './Pages/BookDetails/BookDetails';
 
 function App() {
   return (
-    <HomePage/>
-    
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/book/:id" element={<BookDetails />} />
+      </Routes>
+    </Router>
   );
 }
 

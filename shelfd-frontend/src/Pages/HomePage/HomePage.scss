@@ -10,7 +10,16 @@
     background-color: #14181c;
     color: #fff;
   }
-  
+
   .HomePage {
     min-height: 100vh;
+    text-align: center;
+    
+    h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #f8f9fa;
+      }
+
   }
