@@ -50,7 +50,10 @@ const Hero = () => {
     }
   ];
 
-  // Primero, movemos createInfiniteBooks dentro del componente pero fuera de cualquier efecto
+  //sorprendentemente anda, no se como, pero anda. Revisar igualmente.
+  //si se rompe, dejarlo asi, pero revisar una vez implementado el back
+
+  // primero, movemos createInfiniteBooks dentro del componente pero fuera de cualquier efecto
   // y lo envolvemos en useCallback
   const createInfiniteBooks = useCallback(() => {
     return Array(30).fill(featuredBooks).flat();
@@ -58,13 +61,14 @@ const Hero = () => {
 
   useEffect(() => {
     setBooks(createInfiniteBooks());
-  }, [createInfiniteBooks]); // Ahora incluimos createInfiniteBooks como dependencia
+  }, [createInfiniteBooks]); // ahora incluimos createInfiniteBooks como dependencia
+
 
   useEffect(() => {
     const interval = setInterval(() => {
       setOffset(prev => {
         const newOffset = prev + 1;
-        // Ajustamos el punto de reset basado en la cantidad total de libros
+        // ajustamos el punto de reset basado en la cantidad total de libros
         if (newOffset >= featuredBooks.length * 200) {
           setBooks(prevBooks => {
             const booksToMove = prevBooks.slice(0, featuredBooks.length);
@@ -79,11 +83,13 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [featuredBooks.length]);
 
+  //esta funcion de mierda funciona pero no, no se por que tarda tanto en moverse
+  //y deja de ser aleatorio. Revisar.
   const getCenterBookIndex = useCallback(() => {
     const gridSize = featuredBooks.length;
-    // Calculamos el índice basado en el offset actual
+    // calculamos el indice basado en el offset actual
     const centerPosition = Math.floor(offset / 200);
-    // Usamos el módulo para mantener el índice dentro del rango de libros disponibles
+    // usamos el modulo para mantener el indice dentro del rango de libros disponibles
     return centerPosition % featuredBooks.length;
   }, [offset, featuredBooks.length]);
 

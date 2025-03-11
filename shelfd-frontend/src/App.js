@@ -10,7 +10,7 @@ function App() {
       <Navbar />
       <Hero />
       <Features />
-      {/* Aquí irán los demás componentes */}
+   
     </div>
   );
 }
