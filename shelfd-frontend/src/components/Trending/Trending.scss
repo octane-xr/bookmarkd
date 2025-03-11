@@ -1,0 +1,99 @@
+.trending {
+    text-align: center;
+    padding: 2rem;
+    background-color: #14181c;
+
+    h2 {
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    &__books {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    &__book {
+        background: #1c1f24;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 160px;
+        padding: 0.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    &__book-cover {
+        width: 100%;
+        height: 230px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    }
+
+    &__book-info {
+        text-align: center;
+        padding: 0.5rem;
+        color: white;
+
+        h3 {
+            font-size: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 0.3rem;
+        }
+
+        .trending__book-rating {
+            font-size: 0.9rem;
+            color: #00e054;
+        }
+    }
+
+    &__book-hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        gap: 0.3rem;
+        border: 3px solid #00e054;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    &__book:hover &__book-hover {
+        opacity: 1;
+    }
+}

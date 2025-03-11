@@ -1,6 +1,6 @@
 import React from 'react';
 import './Features.scss';
-import { FaBook, FaChartLine, FaUsers, FaBookmark } from 'react-icons/fa';
+import { FaBook, FaChartLine, FaUsers, FaBookmark, FaComment } from 'react-icons/fa';
 
 const Features = () => {
   const features = [
