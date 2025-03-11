@@ -1,0 +1,62 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #14181c;
+  z-index: 1000;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    h1 {
+      color: #00e054;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: 2rem;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      
+      &:hover {
+        color: #00e054;
+      }
+    }
+  }
+
+  &__auth {
+    display: flex;
+    gap: 1rem;
+
+    button {
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-sign-in {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+    }
+
+    .btn-create-account {
+      background: #00e054;
+      border: none;
+      color: #14181c;
+    }
+  }
+}
