@@ -4,11 +4,12 @@ import HomePage from './Pages/HomePage/HomePage';
 import BookDetails from './Pages/BookDetails/BookDetails';
 
 function App() {
+  
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/book/:id" element={<BookDetails />} />
+        <Route path="/api/book/:db_title" element={<BookDetails />} />
       </Routes>
     </Router>
   );

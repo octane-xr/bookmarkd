@@ -71,7 +71,8 @@ const Trending = () => {
     const navigate = useNavigate();
 
     const handleBookClick = (db_title) =>{
-        navigate(`/book/${db_title}`);
+        navigate(`/api/book/${db_title}`);
+    
     };
 
     return (
