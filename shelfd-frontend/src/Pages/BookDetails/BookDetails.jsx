@@ -6,7 +6,7 @@ function BookDetails() {
     const [book, setBook] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/libros`)
+        fetch(`http://localhost:5000/api/book`)
             .then(response => response.json())
             .then(data => setBook(data))
             .catch(error => console.error("Error fetching book:", error));
