@@ -141,8 +141,6 @@ app.get('/api/top-books', async (req, res) => {
 });
 
 
-
-
 app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
 });

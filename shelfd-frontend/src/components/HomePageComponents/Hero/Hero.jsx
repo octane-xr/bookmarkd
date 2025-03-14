@@ -4,51 +4,30 @@ import './Hero.scss';
 const Hero = () => {
   const [offset, setOffset] = useState(0);
   const [books, setBooks] = useState([]);
-
-  const featuredBooks = [
-    {
-      id: 1,
-      title: "The Midnight Library",
-      author: "Matt Haig",
-      cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1602190253i/52578297.jpg",
-      rating: 4.2
-    },
-    {
-      id: 2,
-      title: "Tomorrow, and Tomorrow, and Tomorrow",
-      author: "Gabrielle Zevin",
-      cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1636978687i/58784475.jpg",
-      rating: 4.3
-    },
-    {
-      id: 3,
-      title: "Demon Copperhead",
-      author: "Barbara Kingsolver",
-      cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1660050779i/60194162.jpg",
-      rating: 4.5
-    },
-    {
-      id: 4,
-      title: "Lessons in Chemistry",
-      author: "Bonnie Garmus",
-      cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1634748496i/58065033.jpg",
-      rating: 4.4
-    },
-    {
-      id: 5,
-      title: "House of Sky and Breath",
-      author: "Sarah J. Maas",
-      cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1633097753i/40132775.jpg",
-      rating: 4.6
-    },
-    {
-      id: 6,
-      title: "Atlas: The Story of Pa Salt",
-      author: "Lucinda Riley",
-      cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1666535049i/58528573.jpg",
-      rating: 4.1
-    }
-  ];
+  const [featuredBooks, setTrendingBooks] = useState([]);
+      const [loading, setLoading] = useState(true);
+      const [error, setError] = useState(null);
+  
+      useEffect(()=>{
+          const fetchTrendingBooks = async () => {
+              try{
+                  const response = await fetch("http://localhost:8000/api/top-books");
+                  if (!response.ok) throw new Error("Cannot get books");
+  
+                  const data = await response.json();
+                  setTrendingBooks(data);
+              }catch(err){
+                  setError(err.message);
+              } finally{
+                  setLoading(false);
+              }
+          };
+          
+          fetchTrendingBooks();
+      },[])
+  
+  
+      
 
   //sorprendentemente anda, no se como, pero anda. Revisar igualmente.
   //si se rompe, dejarlo asi, pero revisar una vez implementado el back
