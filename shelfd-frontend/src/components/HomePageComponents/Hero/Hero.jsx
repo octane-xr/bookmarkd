@@ -27,7 +27,7 @@ const Hero = () => {
       },[])
   
   
-      
+    //
 
   //sorprendentemente anda, no se como, pero anda. Revisar igualmente.
   //si se rompe, dejarlo asi, pero revisar una vez implementado el back
