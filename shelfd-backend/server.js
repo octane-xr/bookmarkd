@@ -1,5 +1,5 @@
 import express from 'express';
-import axios from 'axios';
+//import axios from 'axios';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -133,7 +133,7 @@ app.get('/api/top-books', async (req, res) => {
 
     books = books.sort((a, b) => b.ratingsCount - a.ratingsCount);
 
-    res.json(books.slice(0, 6));
+    res.json(books.slice(0, 9));
   } catch (error) {
     console.error("Error fetching top books: ", error);
     res.status(500).json({ error: "Server error" });
