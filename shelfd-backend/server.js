@@ -139,6 +139,44 @@ app.get('/api/top-books', async (req, res) => {
   }
 });
 
+app.get('/api/top-books-week', async (req, res) => {
+  const startIndex = req.query.startIndex || 0; 
+  const maxResults = req.query.maxResults || 40; 
+  try {
+    const response = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&orderBy=newest&startIndex=${startIndex}&maxResults=${maxResults}&key=${GOOGLE_BOOKS_API_KEY}`
+    );
+
+    const data = await response.json();
+
+    if (!data.items) {
+      return res.status(404).json({ error: "No books found" });
+    }
+
+    let books = data.items.map(book => ({
+      id: book.id,
+      title: book.volumeInfo.title,
+      db_title: book.volumeInfo.title.toLowerCase().replace(/\s+/g, '-'),
+      author: book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown',
+      cover: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'https://via.placeholder.com/150',
+      rating: book.volumeInfo.averageRating || 0,
+      ratingsCount: book.volumeInfo.ratingsCount || 0,
+      description: book.volumeInfo.description || "No description",
+      publishedDate: book.volumeInfo.publishedDate || "Unknown",
+      reads: Math.floor(Math.random() * 50000) + 1000,
+      likes: Math.floor(Math.random() * 20000) + 500,
+      cover: book.volumeInfo.imageLinks?.thumbnail || "https://blog.springshare.com/wp-content/uploads/2010/02/nc-md.gif"
+    }));
+
+    books = books.sort((a, b) => b.ratingsCount - a.ratingsCount);
+
+    res.json(books.slice(0, 25));
+  } catch (error) {
+    console.error("Error fetching top books: ", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 
 app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
